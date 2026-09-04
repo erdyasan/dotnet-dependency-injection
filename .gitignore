@@ -1,0 +1,9 @@
+bin/
+obj/
+
+# CSV data written at runtime by the sample apps
+data/
+
+.DS_Store
+.vs/
+.idea/
