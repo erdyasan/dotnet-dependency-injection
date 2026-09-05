@@ -2,7 +2,8 @@ using Microsoft.Extensions.DependencyInjection;
 
 var services = new ServiceCollection();
 
-services.AddScoped<UserRepository>(sp => new UserRepository(new TableResolver()));
+services.AddScoped<TableResolver>(sp => new TableResolver());
+services.AddScoped<UserRepository>(sp => new UserRepository(sp.GetRequiredService<TableResolver>()));
 
 var provider = services.BuildServiceProvider();
 
