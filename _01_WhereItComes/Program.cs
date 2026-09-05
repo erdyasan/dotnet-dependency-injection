@@ -17,7 +17,9 @@ while (true)
         Console.Write("display name: ");
         var displayName = Console.ReadLine() ?? string.Empty;
 
-        RegisterUser(email, displayName);
+        var users = new UserRepository();
+
+        users.Save(email, displayName);
         Console.WriteLine("saved");
     }
     else if (choice == "2")
@@ -30,7 +32,9 @@ while (true)
             continue;
         }
 
-        Console.WriteLine(ReadUser(lineNumber) ?? "no user on that line");
+        var users = new UserRepository();
+
+        Console.WriteLine(users.Read(lineNumber) ?? "no user on that line");
     }
     else
     {
@@ -45,28 +49,4 @@ void ShowMenu()
     Console.WriteLine("2) read user");
     Console.WriteLine("0) exit");
     Console.Write("> ");
-}
-
-void RegisterUser(string email, string displayName)
-{
-    Directory.CreateDirectory("data");
-
-    File.AppendAllText("data/users.csv", $"{email},{displayName}{Environment.NewLine}");
-}
-
-string? ReadUser(int lineNumber)
-{
-    if (!File.Exists("data/users.csv"))
-    {
-        return null;
-    }
-
-    var lines = File.ReadAllLines("data/users.csv");
-
-    if (lineNumber < 1 || lineNumber > lines.Length)
-    {
-        return null;
-    }
-
-    return lines[lineNumber - 1];
 }
