@@ -17,7 +17,7 @@ while (true)
         Console.Write("display name: ");
         var displayName = Console.ReadLine() ?? string.Empty;
 
-        var users = new UserRepository();
+        var users = new UserRepository(new TableResolver());
 
         users.Save(email, displayName);
         Console.WriteLine("saved");
@@ -32,7 +32,7 @@ while (true)
             continue;
         }
 
-        var users = new UserRepository();
+        var users = new UserRepository(new TableResolver());
 
         Console.WriteLine(users.Read(lineNumber) ?? "no user on that line");
     }
