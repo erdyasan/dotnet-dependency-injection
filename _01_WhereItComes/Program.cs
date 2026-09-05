@@ -1,3 +1,11 @@
+using Microsoft.Extensions.DependencyInjection;
+
+var services = new ServiceCollection();
+
+services.AddScoped<UserRepository>(sp => new UserRepository(new TableResolver()));
+
+var provider = services.BuildServiceProvider();
+
 while (true)
 {
     ShowMenu();
@@ -9,6 +17,8 @@ while (true)
         break;
     }
 
+    using var scope = provider.CreateScope();
+
     if (choice == "1")
     {
         Console.Write("email: ");
@@ -17,7 +27,7 @@ while (true)
         Console.Write("display name: ");
         var displayName = Console.ReadLine() ?? string.Empty;
 
-        var users = new UserRepository(new TableResolver());
+        var users = scope.ServiceProvider.GetRequiredService<UserRepository>();
 
         users.Save(email, displayName);
         Console.WriteLine("saved");
@@ -32,7 +42,7 @@ while (true)
             continue;
         }
 
-        var users = new UserRepository(new TableResolver());
+        var users = scope.ServiceProvider.GetRequiredService<UserRepository>();
 
         Console.WriteLine(users.Read(lineNumber) ?? "no user on that line");
     }
