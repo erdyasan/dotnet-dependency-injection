@@ -3,6 +3,7 @@ menu.language=Change language
 menu.exit=Exit
 prompt.choice=Your choice
 prompt.email=Please enter your email.
+prompt.name=Please enter a name
 prompt.language=Select a language
 hint.email.exit=type =exit to close this scope
 error.email=Email is invalid.
@@ -10,3 +11,7 @@ error.choice=Unknown option.
 empty=Value cannot be empty
 invalid=Invalid email address
 saved=Saved
+error.name.empty=Name cannot be empty
+error.name.short=Name must be at least 2 characters
+error.email.empty=Email cannot be empty
+error.email.invalid=Email is invalid

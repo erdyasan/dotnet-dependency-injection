@@ -4,6 +4,7 @@ var services = new ServiceCollection();
 
 services.AddSingleton<Translator>();
 services.AddScoped<OperationLogger>();
+services.AddScoped<FieldValidator>();
 
 var provider = services.BuildServiceProvider();
 
@@ -51,18 +52,39 @@ while (true)
 
         while (true)
         {
-            Console.Write($"{translator.Get("prompt.email")} > ");
+            Console.Write($"{translator.Get("prompt.name")} > ");
 
-            var email = Console.ReadLine();
+            var name = Console.ReadLine();
 
-            if (email == "=exit")
+            if (name == "=exit")
             {
                 break;
             }
 
+            Console.Write($"{translator.Get("prompt.email")} > ");
+
+            var email = Console.ReadLine();
+
+            var validator = scope.ServiceProvider.GetRequiredService<FieldValidator>();
+
+            validator.AddName(name ?? string.Empty);
+            validator.AddEmail(email ?? string.Empty);
+
+            if (validator.Errors.Count > 0)
+            {
+                foreach (var error in validator.Errors)
+                {
+                    Console.WriteLine($"  ! {translator.Get(error)}");
+                }
+
+                log.Add($"user not added: {name} / {email} -> {string.Join(", ", validator.Errors)}");
+
+                continue;
+            }
+
             Console.WriteLine(translator.Get("saved"));
 
-            log.Add($"user added: {email}");
+            log.Add($"user added: {name} / {email}");
         }
 
         continue;
