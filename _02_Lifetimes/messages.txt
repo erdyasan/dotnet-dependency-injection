@@ -1,0 +1,3 @@
+empty=değer boş olamaz
+invalid=geçersiz eposta adresi
+ok=kayıt edildi
