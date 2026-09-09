@@ -1,23 +1,49 @@
 public class Translator
 {
-    private readonly Dictionary<string, string> _messages = new();
+    private static readonly string[] Languages = { "en", "tr" };
+
+    private readonly Dictionary<string, Dictionary<string, string>> _catalogs = new();
+
+    public string Language { get; private set; } = string.Empty;
 
     public Translator()
     {
-        Console.WriteLine("translator: reading messages.txt");
-
-        var path = Path.Combine(AppContext.BaseDirectory, "messages.txt");
-
-        foreach (var line in File.ReadAllLines(path))
+        foreach (var language in Languages)
         {
-            var parts = line.Split('=');
+            Console.WriteLine($"translator: reading messages.{language}.txt");
 
-            _messages[parts[0]] = parts[1];
+            _catalogs[language] = Read(language);
         }
+    }
+
+    public void Use(string language)
+    {
+        Language = language;
     }
 
     public string Get(string key)
     {
-        return _messages.TryGetValue(key, out var value) ? value : key;
+        if (_catalogs.TryGetValue(Language, out var messages) && messages.TryGetValue(key, out var value))
+        {
+            return value;
+        }
+
+        return key;
+    }
+
+    private static Dictionary<string, string> Read(string language)
+    {
+        var path = Path.Combine(AppContext.BaseDirectory, $"messages.{language}.txt");
+
+        var messages = new Dictionary<string, string>();
+
+        foreach (var line in File.ReadAllLines(path))
+        {
+            var parts = line.Split('=', 2);
+
+            messages[parts[0]] = parts[1];
+        }
+
+        return messages;
     }
 }

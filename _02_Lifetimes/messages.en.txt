@@ -1,0 +1,11 @@
+menu.register=Register user
+menu.language=Change language
+menu.exit=Exit
+prompt.choice=Your choice
+prompt.email=Please enter your email.
+prompt.language=Select a language
+error.email=Email is invalid.
+error.choice=Unknown option.
+empty=Value cannot be empty
+invalid=Invalid email address
+saved=Saved

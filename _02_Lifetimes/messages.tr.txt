@@ -1,0 +1,11 @@
+menu.register=Kullanıcı kaydı
+menu.language=Dil değiştir
+menu.exit=Çıkış
+prompt.choice=Seçiminiz
+prompt.email=Lütfen eposta giriniz.
+prompt.language=Dil seçin
+error.email=Eposta hatalı.
+error.choice=Bilinmeyen seçenek.
+empty=değer boş olamaz
+invalid=geçersiz eposta adresi
+saved=kayıt edildi
