@@ -2,7 +2,7 @@ using Microsoft.Extensions.DependencyInjection;
 
 var services = new ServiceCollection();
 
-services.AddScoped<Translator>();
+services.AddSingleton<Translator>();
 
 var provider = services.BuildServiceProvider();
 
