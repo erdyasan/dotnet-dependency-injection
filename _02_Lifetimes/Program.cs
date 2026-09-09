@@ -4,7 +4,7 @@ var services = new ServiceCollection();
 
 services.AddSingleton<Translator>();
 services.AddScoped<OperationLogger>();
-services.AddScoped<FieldValidator>();
+services.AddTransient<FieldValidator>();
 
 var provider = services.BuildServiceProvider();
 
