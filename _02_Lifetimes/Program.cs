@@ -6,7 +6,10 @@ services.AddSingleton<Translator>();
 services.AddScoped<OperationLogger>();
 services.AddTransient<FieldValidator>();
 
-var provider = services.BuildServiceProvider();
+var provider = services.BuildServiceProvider(new ServiceProviderOptions
+{
+    ValidateScopes = true
+});
 
 while (true)
 {
