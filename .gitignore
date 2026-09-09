@@ -7,3 +7,6 @@ data/
 .DS_Store
 .vs/
 .idea/
+
+# Rider per-user settings
+*.DotSettings.user
