@@ -4,6 +4,7 @@ menu.exit=Çıkış
 prompt.choice=Seçiminiz
 prompt.email=Lütfen eposta giriniz.
 prompt.language=Dil seçin
+hint.email.exit=bu scope'u kapatmak için =exit yazın
 error.email=Eposta hatalı.
 error.choice=Bilinmeyen seçenek.
 empty=değer boş olamaz

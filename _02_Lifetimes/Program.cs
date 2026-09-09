@@ -3,6 +3,7 @@ using Microsoft.Extensions.DependencyInjection;
 var services = new ServiceCollection();
 
 services.AddSingleton<Translator>();
+services.AddScoped<OperationLogger>();
 
 var provider = services.BuildServiceProvider();
 
@@ -11,10 +12,13 @@ while (true)
     using var scope = provider.CreateScope();
 
     var translator = scope.ServiceProvider.GetRequiredService<Translator>();
+    var log = scope.ServiceProvider.GetRequiredService<OperationLogger>();
 
     if (translator.Language.Length == 0)
     {
         ChooseLanguage(translator);
+
+        log.Add($"language selected: {translator.Language}");
     }
 
     Console.WriteLine();
@@ -27,6 +31,8 @@ while (true)
 
     if (choice == "0")
     {
+        log.Add("exit requested");
+
         break;
     }
 
@@ -34,21 +40,37 @@ while (true)
     {
         ChooseLanguage(translator);
 
+        log.Add($"language changed: {translator.Language}");
+
         continue;
     }
 
     if (choice == "1")
     {
-        Console.Write($"{translator.Get("prompt.email")} > ");
+        Console.WriteLine(translator.Get("hint.email.exit"));
 
-        var email = Console.ReadLine();
+        while (true)
+        {
+            Console.Write($"{translator.Get("prompt.email")} > ");
 
-        Console.WriteLine($"{email} -> {translator.Get("saved")}");
+            var email = Console.ReadLine();
+
+            if (email == "=exit")
+            {
+                break;
+            }
+
+            Console.WriteLine(translator.Get("saved"));
+
+            log.Add($"user added: {email}");
+        }
 
         continue;
     }
 
     Console.WriteLine(translator.Get("error.choice"));
+
+    log.Add($"unknown option: {choice}");
 }
 
 void ChooseLanguage(Translator translator)

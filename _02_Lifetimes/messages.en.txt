@@ -4,6 +4,7 @@ menu.exit=Exit
 prompt.choice=Your choice
 prompt.email=Please enter your email.
 prompt.language=Select a language
+hint.email.exit=type =exit to close this scope
 error.email=Email is invalid.
 error.choice=Unknown option.
 empty=Value cannot be empty
