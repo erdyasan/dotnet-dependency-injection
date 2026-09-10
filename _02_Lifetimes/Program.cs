@@ -13,7 +13,7 @@ while (true)
     using var scope = provider.CreateScope();
 
     var translator = scope.ServiceProvider.GetRequiredService<Translator>();
-    var log = scope.ServiceProvider.GetRequiredService<OperationLogger>();
+    var log = provider.GetRequiredService<OperationLogger>();
 
     if (translator.Language.Length == 0)
     {
