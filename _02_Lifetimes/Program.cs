@@ -95,6 +95,8 @@ while (true)
     log.Add($"unknown option: {choice}");
 }
 
+provider.Dispose();
+
 void ChooseLanguage(Translator translator)
 {
     Console.WriteLine();
