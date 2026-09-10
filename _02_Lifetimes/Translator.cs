@@ -4,14 +4,10 @@ public class Translator
 
     private readonly Dictionary<string, Dictionary<string, string>> _catalogs = new();
 
-    private readonly OperationLogger _log;
-
     public string Language { get; private set; } = string.Empty;
 
-    public Translator(OperationLogger log)
+    public Translator()
     {
-        _log = log;
-
         foreach (var language in Languages)
         {
             Console.WriteLine($"translator: reading messages.{language}.txt");
@@ -23,8 +19,6 @@ public class Translator
     public void Use(string language)
     {
         Language = language;
-
-        _log.Add($"language selected: {language}");
     }
 
     public string Get(string key)
