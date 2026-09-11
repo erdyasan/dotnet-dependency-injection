@@ -12,6 +12,7 @@ state but the diff between two steps.
 | Folder | Part |
 |---|---|
 | `_01_WhereItComes/` | Why dependency injection exists. Starts with code that has none. |
+| `_02_Lifetimes/` | Singleton, scoped and transient, and what mixing them breaks. |
 
 ## Reading the history
 
