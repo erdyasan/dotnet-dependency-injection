@@ -2,10 +2,10 @@ menu.register=Register user
 menu.language=Change language
 menu.exit=Exit
 prompt.choice=Your choice
-prompt.email=Please enter your email.
+prompt.email=Please enter your email
 prompt.name=Please enter a name
 hint.email.exit=type =exit to close this scope
-error.choice=Unknown option.
+error.choice=Unknown option
 saved=Saved
 error.name.empty=Name cannot be empty
 error.name.short=Name must be at least 2 characters
