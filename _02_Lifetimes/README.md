@@ -36,11 +36,11 @@ translator: reading messages.tr.txt
 Your choice > 1
 type =exit to close this scope
 Please enter a name > E
-Please enter your email > not-an-email
+Please enter your email. > not-an-email
   ! Name must be at least 2 characters
   ! Email is invalid
 Please enter a name > Erdinc
-Please enter your email > erdinc@example.com
+Please enter your email. > erdinc@example.com
 Saved
 Please enter a name > =exit
 
